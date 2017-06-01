@@ -46,3 +46,8 @@ algorithm.ncb
 algorithm/algorithm.vcproj.PUHFH2JTMDNCRD9.Administrator.user
 libalgorithm/Debug/BuildLog.htm
 *.user
+algorithm/Debug/algorithm.exe.embed.manifest
+*.res
+algorithm/Debug/algorithm.exe.intermediate.manifest
+Debug/algorithm.ilk
+Debug/libalgorithm.ilk

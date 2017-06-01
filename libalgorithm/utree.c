@@ -16,7 +16,7 @@ void utree_walk(utree_st *root, utree_cb walk, void *udata)
 	}
 }
 
-utree_st *utree_search(utree_st *root, utree_cb cmp, void *udata)
+static utree_st *utree_search_tmp(utree_st *root, utree_cb cmp, void *udata)
 {
 	utree_st *p;
 
@@ -28,12 +28,23 @@ utree_st *utree_search(utree_st *root, utree_cb cmp, void *udata)
 		return root;
 	} 
 
-	p = utree_search(root->child, cmp, udata);
+	p = utree_search_tmp(root->child, cmp, udata);
 	if (p) {
 		return p;
 	}
 
-	return utree_search(root->sibling, cmp, udata);
+	return utree_search_tmp(root->sibling, cmp, udata);
+}
+
+utree_st *utree_search(utree_st *root, utree_cb cmp, void *udata)
+{
+	utree_st *p;
+
+	if (cmp(root, udata) == 0) {
+		return root;
+	}
+
+	return utree_search_tmp(root->child, cmp, udata);
 }
 
 void utree_insert(utree_st *parent, utree_st *node)
