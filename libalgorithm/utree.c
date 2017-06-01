@@ -38,8 +38,6 @@ static utree_st *utree_search_tmp(utree_st *root, utree_cb cmp, void *udata)
 
 utree_st *utree_search(utree_st *root, utree_cb cmp, void *udata)
 {
-	utree_st *p;
-
 	if (cmp(root, udata) == 0) {
 		return root;
 	}
