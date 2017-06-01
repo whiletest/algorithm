@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "algorithm", "algorithm\algorithm.vcproj", "{EA0F7937-5FA3-41D9-8F0C-F8872AB1EEC8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E9B2D157-3E25-4B86-9517-7A4818A49144} = {E9B2D157-3E25-4B86-9517-7A4818A49144}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libalgorithm", "libalgorithm\libalgorithm.vcproj", "{E9B2D157-3E25-4B86-9517-7A4818A49144}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA0F7937-5FA3-41D9-8F0C-F8872AB1EEC8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EA0F7937-5FA3-41D9-8F0C-F8872AB1EEC8}.Debug|Win32.Build.0 = Debug|Win32
+		{EA0F7937-5FA3-41D9-8F0C-F8872AB1EEC8}.Release|Win32.ActiveCfg = Release|Win32
+		{EA0F7937-5FA3-41D9-8F0C-F8872AB1EEC8}.Release|Win32.Build.0 = Release|Win32
+		{E9B2D157-3E25-4B86-9517-7A4818A49144}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E9B2D157-3E25-4B86-9517-7A4818A49144}.Debug|Win32.Build.0 = Debug|Win32
+		{E9B2D157-3E25-4B86-9517-7A4818A49144}.Release|Win32.ActiveCfg = Release|Win32
+		{E9B2D157-3E25-4B86-9517-7A4818A49144}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
