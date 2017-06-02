@@ -130,42 +130,9 @@ void find_maximum_subarray3(int *arr, int len)
 } 
 */
 
-typedef struct {
-	int key;
-	utree_st utree;
-}test_utree_st;
-
-#define test_utree_init(t, val) do {\
-	t.key = val;\
-	utree_init(&t.utree);\
-} while (0)
-
-int cmp(utree_st *n, void *udata)
-{
-	test_utree_st *t;
-	
-	t = utree_entry(n, test_utree_st, utree);
-	return (t->key - (int)udata);
-}
-
-#define test_utree_insert(root, t, key) do {\
-	utree_st *p = utree_search(&root.utree, cmp, (void*)key);\
-	if (p) {\
-		utree_insert(p, &t.utree);\
-	}\
-} while (0)
-
-int print(utree_st *n, void *udata)
-{
-	test_utree_st *t;
-	
-	t = utree_entry(n, test_utree_st, utree);
-	printf("%d ", t->key);
-	return 0;
-}
-
 int _tmain(int argc, _TCHAR* argv[])
-{/*
+{
+/* 最大子数组测试用例
 	int low, high, sum;
 	int a[] = {13,-3,-25,20,-3,-16,-23,18,20,-7,12,-5,-22,15,-4,7};
 
@@ -179,42 +146,6 @@ int _tmain(int argc, _TCHAR* argv[])
 	find_maximum_subarray2(a, 16);
 	find_maximum_subarray3(a, 16);
 */
-
-	int arr[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14};
-	test_utree_st t[14];
-
-	for (int i = 0; i < 14; i++)
-		test_utree_init(t[i], i);
-	
-	test_utree_insert(t[0], t[3], 0);
-	test_utree_insert(t[0], t[2], 0);
-	test_utree_insert(t[0], t[1], 0);
-
-	test_utree_insert(t[0], t[5], 1);
-	test_utree_insert(t[0], t[4], 1);
-
-	test_utree_insert(t[0], t[9], 2);
-	test_utree_insert(t[0], t[8], 2);
-	test_utree_insert(t[0], t[7], 2);
-	test_utree_insert(t[0], t[6], 2);
-
-	test_utree_insert(t[0], t[10], 3);
-
-	test_utree_insert(t[0], t[11], 5);
-
-	test_utree_insert(t[0], t[13], 8);
-	test_utree_insert(t[0], t[12], 8);
-
-	utree_walk(&t[0].utree, print, NULL);
-	printf("\n");
-
-	utree_walk(&t[8].utree, print, NULL);
-	printf("\n");
-
-	utree_st *n = utree_search(&t[0].utree, cmp, (void*)0);
-	utree_delete(n, NULL, NULL);
-	utree_walk(&t[0].utree, print, NULL);
-
 
 	getchar();
 	return 0;
