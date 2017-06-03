@@ -45,7 +45,9 @@ int tqs_cmp(void *arr, int i, int j)
 
 void tqs_swap(void *arr, int i, int j)
 {
-	SWAP(arr, i, j, test_qs_st);
+	if (i != j) {
+		SWAP(arr, i, j, test_qs_st);
+	}
 }
 
 void print(test_qs_st *tqs, int len)

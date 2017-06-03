@@ -37,12 +37,10 @@ typedef int	 (*cmp_func)(void *arr, int i, int j);
 typedef void (*swap_func)(void *arr, int i, int j);
 
 #define SWAP(arr, i, j, type) do {\
-	if (i != j) {\
-		type *uarr = (type*)arr;\
-		type tmp = uarr[j];\
-		uarr[j] = uarr[i];\
-		uarr[i] = tmp;\
-	}\
+	type *uarr = (type*)arr;\
+	type tmp = uarr[j];\
+	uarr[j] = uarr[i];\
+	uarr[i] = tmp;\
 } while (0)
 
 //////////////////////////////////////////////////////////////////////////
@@ -79,6 +77,10 @@ API void utree_insert(utree_st *parent, utree_st *node);
 //
 API void utree_delete(utree_st *node, utree_cb del, void *udata);
 
+
+//////////////////////////////////////////////////////////////////////////
+//∂—≈≈–Ú
+API void heapsort(void *arr, int len, cmp_func cmp, swap_func swap);
 
 //////////////////////////////////////////////////////////////////////////
 
