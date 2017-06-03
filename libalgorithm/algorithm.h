@@ -83,5 +83,35 @@ API void utree_delete(utree_st *node, utree_cb del, void *udata);
 API void heapsort(void *arr, int len, cmp_func cmp, swap_func swap);
 
 //////////////////////////////////////////////////////////////////////////
+//优先队列
+/*********************************************************************************
+  *Func:	pquequed
+  *Desc:	将一段已经在数组中的元素构造为优先队列	
+  *Param:	pque,待构造的数据段首地址  
+  *Param:	pqlen,有效数据的长度
+  *Param:	cmp,自定义的比较函数
+  *Param:	swap,自定义的数据交换函数
+  *Return:  
+  *Others:  功能等效于多次调用enpqueue函数
+**********************************************************************************/
+API void pquequed(void *pque, int pqlen, cmp_func cmp, swap_func swap);
+/*********************************************************************************
+  *Func:
+  *Desc:	
+  *Input:	
+  *Output:  
+  *Return:  
+  *Others:  
+**********************************************************************************/
+API void enpqueue(void *pque, int *pqlen, cmp_func cmp, swap_func swap);
+/*********************************************************************************
+  *Func:
+  *Desc:	
+  *Input:	
+  *Output:  
+  *Return:  
+  *Others:  
+**********************************************************************************/
+API int depqueue(void *pque, int *pqlen, cmp_func cmp, swap_func swap);
 
 #endif
