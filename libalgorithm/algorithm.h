@@ -33,9 +33,21 @@ typedef unsigned int  uint;
 #define API _API
 #endif
 
+typedef int	 (*cmp_func)(void *arr, int i, int j);
+typedef void (*swap_func)(void *arr, int i, int j);
+
+#define SWAP(arr, i, j, type) do {\
+	if (i != j) {\
+		type *uarr = (type*)arr;\
+		type tmp = uarr[j];\
+		uarr[j] = uarr[i];\
+		uarr[i] = tmp;\
+	}\
+} while (0)
 
 //////////////////////////////////////////////////////////////////////////
-typedef int (*cmp_func)(void *l, void *r);
+//øÏÀŸ≈≈–Ú
+API void quiksort(void *arr, int low, int high, cmp_func cmp, swap_func swap);
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -66,5 +78,8 @@ API utree_st *utree_search(utree_st *root, utree_cb fun, void *udata);
 API void utree_insert(utree_st *parent, utree_st *node);
 //
 API void utree_delete(utree_st *node, utree_cb del, void *udata);
+
+
+//////////////////////////////////////////////////////////////////////////
 
 #endif
