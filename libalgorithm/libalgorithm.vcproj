@@ -179,6 +179,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\search.c"
+				>
+			</File>
+			<File
 				RelativePath=".\utree.c"
 				>
 			</File>

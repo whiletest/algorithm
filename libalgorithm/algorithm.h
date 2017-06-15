@@ -114,4 +114,10 @@ API void enpqueue(void *pque, int *pqlen, cmp_func cmp, swap_func swap);
 **********************************************************************************/
 API int depqueue(void *pque, int *pqlen, cmp_func cmp, swap_func swap);
 
+//////////////////////////////////////////////////////////////////////////
+//¶þ·Ö²éÕÒ
+typedef int (*bs_cmp_func)(void *arr, int i, void *key);
+//
+API int bsearch(void *arr, int low, int high, bs_cmp_func cmp, void *key);
+
 #endif
