@@ -50,12 +50,12 @@ void utree_insert(utree_st **parent, utree_st *node)
 	if (*parent == NULL) {
 		*parent = node;
 	} else {
-		utree_st *old_child = *parent->child;
+		utree_st *old_child = (*parent)->child;
 		if (old_child) {
 			old_child->lsibling = node;
 		}
 
-		*parent->child = node;
+		(*parent)->child = node;
 		node->parent = *parent;
 		node->sibling = old_child;
 	}
@@ -104,6 +104,8 @@ void utree_delete(utree_st *node, utree_cb del, void *udata)
 //µ¥Ôª²âÊÔ´úÂë
 //todo...
 /*
+#include <stdio.h>
+
 typedef struct {
 	int key;
 	utree_st utree;
@@ -125,7 +127,7 @@ int cmp(utree_st *n, void *udata)
 #define test_utree_insert(root, t, key) do {\
 	utree_st *p = utree_search(&root.utree, cmp, (void*)key);\
 	if (p) {\
-	utree_insert(p, &t.utree);\
+		utree_insert(&p, &t.utree);\
 	}\
 } while (0)
 
@@ -138,13 +140,16 @@ int print(utree_st *n, void *udata)
 	return 0;
 }
 
-XTEST_UTREE()
+void main()
 {
+	utree_st *root = NULL;
 	test_utree_st t[14];
+	int i;
 
-	for (int i = 0; i < 14; i++)
+	for (i = 0; i < 14; i++)
 		test_utree_init(t[i], i);
 
+	utree_insert(&root, &t[0].utree);
 	test_utree_insert(t[0], t[3], 0);
 	test_utree_insert(t[0], t[2], 0);
 	test_utree_insert(t[0], t[1], 0);
@@ -164,14 +169,14 @@ XTEST_UTREE()
 	test_utree_insert(t[0], t[13], 8);
 	test_utree_insert(t[0], t[12], 8);
 
-	utree_walk(&t[0].utree, print, NULL);
+	utree_walk(root, print, NULL);
 	printf("\n");
 
 	utree_walk(&t[8].utree, print, NULL);
 	printf("\n");
 
-	utree_st *n = utree_search(&t[0].utree, cmp, (void*)0);
+	utree_st *n = utree_search(root, cmp, (void*)0);
 	utree_delete(n, NULL, NULL);
-	utree_walk(&t[0].utree, print, NULL);
+	utree_walk(root, print, NULL);
 }
 */
