@@ -73,7 +73,7 @@ API void utree_walk(utree_st *node, utree_cb fun, void *udata);
 //
 API utree_st *utree_search(utree_st *root, utree_cb fun, void *udata);
 //
-API void utree_insert(utree_st *parent, utree_st *node);
+API void utree_insert(utree_st **parent, utree_st *node);
 //
 API void utree_delete(utree_st *node, utree_cb del, void *udata);
 

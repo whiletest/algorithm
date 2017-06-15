@@ -45,16 +45,20 @@ utree_st *utree_search(utree_st *root, utree_cb cmp, void *udata)
 	return utree_search_tmp(root->child, cmp, udata);
 }
 
-void utree_insert(utree_st *parent, utree_st *node)
+void utree_insert(utree_st **parent, utree_st *node)
 {
-	utree_st *old_child = parent->child;
-	if (old_child) {
-		old_child->lsibling = node;
-	}
+	if (*parent == NULL) {
+		*parent = node;
+	} else {
+		utree_st *old_child = *parent->child;
+		if (old_child) {
+			old_child->lsibling = node;
+		}
 
-	parent->child = node;
-	node->parent = parent;
-	node->sibling = old_child;
+		*parent->child = node;
+		node->parent = *parent;
+		node->sibling = old_child;
+	}
 }
 
 static void utree_del_current(utree_st *node, utree_cb del, void *udata)
