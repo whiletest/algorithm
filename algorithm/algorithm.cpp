@@ -129,6 +129,37 @@ void find_maximum_subarray3(int *arr, int len)
 	printf("maximum array from %d to %d, sum:%d\n", low, high, MaxSum);  
 } 
 */
+#include "../libalgorithm/xtest.h"
+
+typedef struct {
+	int key;
+	rb_tree_st rb_tree;
+	int udata;
+}rb_test_st;
+
+typedef struct {
+	int kseq[64];
+	int cur;
+}rb_chk_st;
+
+int rb_my_cmp(rb_tree_st *l, rb_tree_st *r)
+{
+	rb_test_st *lt = rb_entry(l, rb_test_st, rb_tree);
+	rb_test_st *rt = rb_entry(r, rb_test_st, rb_tree);
+
+	return (lt->key - rt->key);
+}
+
+int xtest_check1(rb_tree_st *n, void *udata)
+{
+	rb_test_st *t = rb_entry(n, rb_test_st, rb_tree);
+	rb_chk_st *chk = (rb_chk_st *)udata;
+
+	EXPECT_EQ(t->key, chk->kseq[chk->cur]);
+	chk->cur++;
+
+	return 0;
+}
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -146,8 +177,38 @@ int _tmain(int argc, _TCHAR* argv[])
 	find_maximum_subarray2(a, 16);
 	find_maximum_subarray3(a, 16);
 */
+	int i;
+	rb_tree_st *root = NULL;
+	rb_test_st t[10];
+	rb_chk_st chk1;
 
-	getchar();
+	t[0].key = 1;
+	t[1].key = 2;
+	t[2].key = 4;
+
+	for (i = 0; i < 3; i++) {
+		rb_tree_insert(&root, &t[i].rb_tree, rb_my_cmp);
+	}
+
+	EXPECT_EQ(rb_tree_height(root), 2);
+
+	chk1.cur = 0;
+	chk1.kseq[0] = 1; chk1.kseq[1] = 2; chk1.kseq[2] = 4;
+	rb_tree_walk(root, xtest_check1, (void*)&chk1);
+
+	t[3].key = 5; t[4].key = 7; t[5].key = 8;
+	t[6].key = 11; t[7].key = 14; t[8].key = 15;
+	for (i = 3; i < 9; i++) {
+		rb_tree_insert(&root, &t[i].rb_tree, rb_my_cmp);
+	}
+
+	chk1.kseq[3] = 5; chk1.kseq[4] = 7; chk1.kseq[5] = 8;
+	chk1.kseq[6] = 11; chk1.kseq[7] = 14; chk1.kseq[8] = 15;
+	EXPECT_EQ(rb_tree_height(root), 4);
+
+	chk1.cur = 0;
+	rb_tree_walk(root, xtest_check1, (void*)&chk1);
+
 	return 0;
 }
 

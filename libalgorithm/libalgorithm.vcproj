@@ -179,6 +179,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\rb_tree.c"
+				>
+			</File>
+			<File
 				RelativePath=".\search.c"
 				>
 			</File>
@@ -194,6 +198,10 @@
 			>
 			<File
 				RelativePath=".\algorithm.h"
+				>
+			</File>
+			<File
+				RelativePath=".\xtest.h"
 				>
 			</File>
 		</Filter>

@@ -36,6 +36,14 @@ typedef unsigned int  uint;
 typedef int	 (*cmp_func)(void *arr, int i, int j);
 typedef void (*swap_func)(void *arr, int i, int j);
 
+#define ASSERT_RET(type,expr,expe) do {\
+	type ret;\
+	ret = expr;\
+	if (ret != expe) {\
+		return ret;\
+	}\
+} while (0)
+
 #define SWAP(arr, i, j, type) do {\
 	type *uarr = (type*)arr;\
 	type tmp = uarr[j];\
@@ -95,23 +103,9 @@ API void heapsort(void *arr, int len, cmp_func cmp, swap_func swap);
   *Others:  功能等效于多次调用enpqueue函数
 **********************************************************************************/
 API void pquequed(void *pque, int pqlen, cmp_func cmp, swap_func swap);
-/*********************************************************************************
-  *Func:
-  *Desc:	
-  *Input:	
-  *Output:  
-  *Return:  
-  *Others:  
-**********************************************************************************/
+//
 API void enpqueue(void *pque, int *pqlen, cmp_func cmp, swap_func swap);
-/*********************************************************************************
-  *Func:
-  *Desc:	
-  *Input:	
-  *Output:  
-  *Return:  
-  *Others:  
-**********************************************************************************/
+//
 API int depqueue(void *pque, int *pqlen, cmp_func cmp, swap_func swap);
 
 //////////////////////////////////////////////////////////////////////////
@@ -119,5 +113,31 @@ API int depqueue(void *pque, int *pqlen, cmp_func cmp, swap_func swap);
 typedef int (*bs_cmp_func)(void *arr, int i, void *key);
 //
 API int bsearch(void *arr, int low, int high, bs_cmp_func cmp, void *key);
+
+//////////////////////////////////////////////////////////////////////////
+//红黑树
+struct rb_tree_st {
+	struct rb_tree_st *parent;
+	struct rb_tree_st *lchild;
+	struct rb_tree_st *rchild;
+	unsigned int color;
+};
+
+typedef struct rb_tree_st rb_tree_st;
+typedef int (*rb_cmp_func)(rb_tree_st *l, rb_tree_st *r);
+typedef int (*rb_walk_func)(rb_tree_st *n, void *udata);
+
+//
+#define rb_entry(ptr, type, member)\
+	container_of(ptr, type, member)
+
+//
+API int rb_tree_insert(rb_tree_st **root, rb_tree_st *node, rb_cmp_func cmp);
+//
+API int rb_tree_walk(rb_tree_st *root, rb_walk_func walk, void *udata);
+//
+API int rb_tree_height(rb_tree_st *root);
+//
+API	void rb_tree_delete(rb_tree_st **root, rb_tree_st *node);
 
 #endif
